@@ -42,7 +42,11 @@ const limiter = rateLimit({
 });
 
 app.use("/api/pnr/:pnrVal", limiter, cacheMiddleware);
-
+app.get("/", (req, res) => {
+  res.status(200).send({
+    message: "Node Server",
+  });
+});
 app.get("/api/pnr/:pnrVal", async (req, res) => {
   try {
     const pnr = req.params.pnrVal;
